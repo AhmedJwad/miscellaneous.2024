@@ -10,8 +10,28 @@ namespace consol.miscellaneous
     {
         public static List<int>Moda(List<int> numbers)
         {
-            var moda=new List<int>();
-            return moda;
+           
+            var counters=new Dictionary<int, int>();
+            foreach (var item in numbers)
+            {
+                if(counters.ContainsKey(item))
+                {
+                    counters[item]++;
+                }else
+                {
+                    counters.Add(item,1 );
+                }
+                
+            }
+            foreach (var item1 in counters)
+            {
+                Console.WriteLine($"{item1.Key}={item1.Value}");
+            }
+            var maxvalue=counters.Max(x => x.Value);
+            Console.WriteLine($" max value={maxvalue}");
+           return counters.Where(x => x.Value == maxvalue).Select(x=>x.Key).ToList();
+           
+           
         }
 
         public static List<int>fill(int n, int min , int max)
